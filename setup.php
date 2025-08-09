@@ -63,7 +63,9 @@ if (file_exists(__DIR__ . "/sidebar.php")) {
     echo "⚠️ sidebar.php not found.\n";
 }
 
-// Step 5: Delete the cloned repo folder (where this script runs)
+// Go back one level from Laravel project directory before deleting repo
+chdir('..');
+
 echo "\n🗑️ Deleting cloned repository folder: $repoDir\n";
 runCommand("rm -rf " . escapeshellarg(__DIR__));
 
