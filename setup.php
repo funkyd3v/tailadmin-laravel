@@ -39,14 +39,14 @@ if (is_dir("../assets")) {
     echo "⚠️ assets folder not found in repository root.\n";
 }
 
-// Step 4: Replace app.blade.php
-echo "\n📝 Replacing app.blade.php...\n";
+// Step 4: Move app.blade.php
+echo "\n📝 Moving app.blade.php...\n";
 if (file_exists("../app.blade.php")) {
     if (!is_dir("resources/views/layouts")) {
         mkdir("resources/views/layouts", 0777, true);
     }
-    copy("../app.blade.php", "resources/views/layouts/app.blade.php");
-    echo "✅ app.blade.php replaced.\n";
+    rename("../app.blade.php", "resources/views/layouts/app.blade.php");
+    echo "✅ app.blade.php moved to resources/views/layouts/\n";
 } else {
     echo "⚠️ app.blade.php not found.\n";
 }
@@ -55,7 +55,7 @@ if (file_exists("../app.blade.php")) {
 echo "\n⚙️ Moving sidebar.php...\n";
 if (file_exists("../sidebar.php")) {
     rename("../sidebar.php", "config/sidebar.php");
-    echo "✅ sidebar.php moved to config.\n";
+    echo "✅ sidebar.php moved to config/\n";
 } else {
     echo "⚠️ sidebar.php not found.\n";
 }
