@@ -16,14 +16,14 @@ if (empty($projectName)) {
     exit(1);
 }
 
-// Detect current repo folder name
+// Detect current repo folder name (the folder where this script is running)
 $repoDir = basename(__DIR__);
 
-// Laravel install path (one level up from repo)
-$installPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . $projectName;
+// Laravel install path (one directory up from current repo)
+$installPath = "../{$projectName}";
 
 echo "\n🚀 Installing Laravel into: $installPath\n";
-runCommand("laravel new \"$installPath\"");
+runCommand("laravel new " . escapeshellarg($installPath));
 
 // Step 1: Install Laravel Breeze
 chdir($installPath);
@@ -33,7 +33,7 @@ runCommand("php artisan breeze:install");
 runCommand("npm install");
 runCommand("npm run build");
 
-// Step 2: Move assets folder
+// Step 2: Move assets folder from repo root to Laravel public folder
 echo "\n📂 Moving assets...\n";
 if (is_dir(__DIR__ . "/assets")) {
     rename(__DIR__ . "/assets", "public/assets");
@@ -42,7 +42,7 @@ if (is_dir(__DIR__ . "/assets")) {
     echo "⚠️ assets folder not found in repository root.\n";
 }
 
-// Step 3: Move app.blade.php
+// Step 3: Move app.blade.php into Laravel views/layouts
 echo "\n📝 Moving app.blade.php...\n";
 if (file_exists(__DIR__ . "/app.blade.php")) {
     if (!is_dir("resources/views/layouts")) {
@@ -54,7 +54,7 @@ if (file_exists(__DIR__ . "/app.blade.php")) {
     echo "⚠️ app.blade.php not found.\n";
 }
 
-// Step 4: Move sidebar.php to config
+// Step 4: Move sidebar.php into Laravel config folder
 echo "\n⚙️ Moving sidebar.php...\n";
 if (file_exists(__DIR__ . "/sidebar.php")) {
     rename(__DIR__ . "/sidebar.php", "config/sidebar.php");
@@ -63,8 +63,8 @@ if (file_exists(__DIR__ . "/sidebar.php")) {
     echo "⚠️ sidebar.php not found.\n";
 }
 
-// Step 5: Delete the repo folder
+// Step 5: Delete the cloned repo folder (where this script runs)
 echo "\n🗑️ Deleting cloned repository folder: $repoDir\n";
-runCommand("rm -rf \"" . __DIR__ . "\"");
+runCommand("rm -rf " . escapeshellarg(__DIR__));
 
 echo "\n🎉 Setup completed successfully!\n";
