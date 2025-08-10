@@ -54,6 +54,90 @@ if (file_exists(__DIR__ . "/app.blade.php")) {
     echo "⚠️ app.blade.php not found.\n";
 }
 
+// Step 3.1: Move header.blade.php into Laravel views/layouts
+echo "\n📝 Moving header.blade.php...\n";
+if (file_exists(__DIR__ . "/header.blade.php")) {
+    if (!is_dir("resources/views/layouts")) {
+        mkdir("resources/views/layouts", 0777, true);
+    }
+    rename(__DIR__ . "/header.blade.php", "resources/views/layouts/header.blade.php");
+    echo "✅ header.blade.php moved to resources/views/layouts/\n";
+} else {
+    echo "⚠️ header.blade.php not found.\n";
+}
+
+// Step 3.2: Move sidebar.blade.php into Laravel views/layouts
+echo "\n📝 Moving sidebar.blade.php...\n";
+if (file_exists(__DIR__ . "/sidebar.blade.php")) {
+    if (!is_dir("resources/views/layouts")) {
+        mkdir("resources/views/layouts", 0777, true);
+    }
+    rename(__DIR__ . "/sidebar.blade.php", "resources/views/layouts/sidebar.blade.php");
+    echo "✅ sidebar.blade.php moved to resources/views/layouts/\n";
+} else {
+    echo "⚠️ sidebar.blade.php not found.\n";
+}
+
+// Step 3.3: Move 2025_08_09_182304_create_menus_table.php to database/migrations
+echo "\n📝 Moving 2025_08_09_182304_create_menus_table.php...\n";
+if (file_exists(__DIR__ . "/2025_08_09_182304_create_menus_table.php")) {
+    if (!is_dir("database/migrations")) {
+        mkdir("database/migrations", 0777, true);
+    }
+    rename(__DIR__ . "/2025_08_09_182304_create_menus_table.php", "database/migrations/2025_08_09_182304_create_menus_table.php");
+    echo "✅ 2025_08_09_182304_create_menus_table.php moved to database/migrations/\n";
+} else {
+    echo "⚠️ 2025_08_09_182304_create_menus_table.php not found.\n";
+}
+
+// Step 3.4: Move Menu.php to app/Models
+echo "\n📝 Moving Menu.php...\n";
+if (file_exists(__DIR__ . "/Menu.php")) {
+    if (!is_dir("app/Models")) {
+        mkdir("app/Models", 0777, true);
+    }
+    rename(__DIR__ . "/Menu.php", "app/Models/Menu.php");
+    echo "✅ Menu.php moved to app/Models/\n";
+} else {
+    echo "⚠️ Menu.php not found.\n";
+}
+
+// Step 3.5: Replace login.blade.php in resources/views/auth
+echo "\n📝 Replacing login.blade.php...\n";
+if (file_exists(__DIR__ . "/login.blade.php")) {
+    if (!is_dir("resources/views/auth")) {
+        mkdir("resources/views/auth", 0777, true);
+    }
+    rename(__DIR__ . "/login.blade.php", "resources/views/auth/login.blade.php");
+    echo "✅ login.blade.php replaced in resources/views/auth/\n";
+} else {
+    echo "⚠️ login.blade.php not found.\n";
+}
+
+// Step 3.6: Replace register.blade.php in resources/views/auth
+echo "\n📝 Replacing register.blade.php...\n";
+if (file_exists(__DIR__ . "/register.blade.php")) {
+    if (!is_dir("resources/views/auth")) {
+        mkdir("resources/views/auth", 0777, true);
+    }
+    rename(__DIR__ . "/register.blade.php", "resources/views/auth/register.blade.php");
+    echo "✅ register.blade.php replaced in resources/views/auth/\n";
+} else {
+    echo "⚠️ register.blade.php not found.\n";
+}
+
+// Step 3.7: Replace web.blade.php
+echo "\n📝 Replacing web.blade.php...\n";
+if (file_exists(__DIR__ . "/web.blade.php")) {
+    if (!is_dir("resources/views")) {
+        mkdir("resources/views", 0777, true);
+    }
+    rename(__DIR__ . "/web.blade.php", "resources/views/web.blade.php");
+    echo "✅ web.blade.php replaced in resources/views/\n";
+} else {
+    echo "⚠️ web.blade.php not found.\n";
+}
+
 // Step 4: Move sidebar.php into Laravel config folder
 echo "\n⚙️ Moving sidebar.php...\n";
 if (file_exists(__DIR__ . "/sidebar.php")) {
