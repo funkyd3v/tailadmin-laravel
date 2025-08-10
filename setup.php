@@ -138,6 +138,18 @@ if (file_exists(__DIR__ . "/web.blade.php")) {
     echo "⚠️ web.blade.php not found.\n";
 }
 
+// Step 3.8: Replace .php
+echo "\n📝 Replacing ViewServiceProvider.php...\n";
+if (file_exists(__DIR__ . "/ViewServiceProvider.php")) {
+    if (!is_dir("app/Providers")) {
+        mkdir("app/Providers", 0777, true);
+    }
+    rename(__DIR__ . "/ViewServiceProvider.php", "app/Providers/ViewServiceProvider.php");
+    echo "✅ ViewServiceProvider.php replaced in app/Providers/\n";
+} else {
+    echo "⚠️ ViewServiceProvider.php not found.\n";
+}
+
 // Step 4: Move sidebar.php into Laravel config folder
 echo "\n⚙️ Moving sidebar.php...\n";
 if (file_exists(__DIR__ . "/sidebar.php")) {
