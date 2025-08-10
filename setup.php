@@ -151,6 +151,6 @@ if (file_exists(__DIR__ . "/sidebar.php")) {
 chdir('..');
 
 echo "\n🗑️ Deleting cloned repository folder: $repoDir\n";
-runCommand("rm -rf " . escapeshellarg(__DIR__));
+runCommand("rm -rf tailadmin-laravel");
 
 echo "\n🎉 Setup completed successfully!\n";
