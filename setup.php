@@ -127,15 +127,15 @@ if (file_exists(__DIR__ . "/register.blade.php")) {
 }
 
 // Step 3.7: Replace web.blade.php
-echo "\n📝 Replacing web.blade.php...\n";
-if (file_exists(__DIR__ . "/web.blade.php")) {
+echo "\n📝 Replacing web.php...\n";
+if (file_exists(__DIR__ . "/web.php")) {
     if (!is_dir("resources/views")) {
         mkdir("resources/views", 0777, true);
     }
-    rename(__DIR__ . "/web.blade.php", "resources/views/web.blade.php");
-    echo "✅ web.blade.php replaced in resources/views/\n";
+    rename(__DIR__ . "/web.php", "resources/views/web.php");
+    echo "✅ web.php replaced in resources/views/\n";
 } else {
-    echo "⚠️ web.blade.php not found.\n";
+    echo "⚠️ web.php not found.\n";
 }
 
 // Step 3.8: Replace .php
