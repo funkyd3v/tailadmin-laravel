@@ -1,9 +1,11 @@
 <?php
 function runCommand($command) {
     echo "\n> $command\n";
-    passthru($command, $status);
+    exec($command . ' 2>&1', $output, $status);
+    echo implode("\n", $output) . "\n";
     if ($status !== 0) {
         echo "\n❌ Command failed: $command\n";
+        echo "Error output: " . implode("\n", $output) . "\n";
         exit(1);
     }
 }
@@ -139,6 +141,7 @@ if (file_exists(__DIR__ . "/web.php")) {
 }
 
 // Step 3.8: Replace .php
+runCommand("php artisan make:provider ViewServiceProvider");
 echo "\n📝 Replacing ViewServiceProvider.php...\n";
 if (file_exists(__DIR__ . "/ViewServiceProvider.php")) {
     if (!is_dir("app/Providers")) {
@@ -159,10 +162,18 @@ if (file_exists(__DIR__ . "/sidebar.php")) {
     echo "⚠️ sidebar.php not found.\n";
 }
 
-// Go back one level from Laravel project directory before deleting repo
+// Go back one level from Laravel project directory
 chdir('..');
 
 echo "\n🗑️ Deleting cloned repository folder: $repoDir\n";
-runCommand("rm -rf tailadmin-laravel");
+if (!is_dir($repoDir)) {
+    echo "⚠️ Directory $repoDir does not exist.\n";
+    exit(1);
+}
+if (!is_writable($repoDir)) {
+    echo "❌ No write permission for directory: $repoDir\n";
+    exit(1);
+}
+runCommand("rm -rf " . escapeshellarg($repoDir));
 
 echo "\n🎉 Setup completed successfully!\n";
