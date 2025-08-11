@@ -1,11 +1,9 @@
 <?php
 function runCommand($command) {
     echo "\n> $command\n";
-    exec($command . ' 2>&1', $output, $status);
-    echo implode("\n", $output) . "\n";
+    passthru($command, $status);
     if ($status !== 0) {
         echo "\n❌ Command failed: $command\n";
-        echo "Error output: " . implode("\n", $output) . "\n";
         exit(1);
     }
 }
