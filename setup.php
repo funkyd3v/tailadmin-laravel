@@ -161,17 +161,17 @@ if (file_exists(__DIR__ . "/sidebar.php")) {
 }
 
 // Go back one level from Laravel project directory
-chdir('..');
+// chdir('..');
 
-echo "\n🗑️ Deleting cloned repository folder: $repoDir\n";
-if (!is_dir($repoDir)) {
-    echo "⚠️ Directory $repoDir does not exist.\n";
-    exit(1);
-}
-if (!is_writable($repoDir)) {
-    echo "❌ No write permission for directory: $repoDir\n";
-    exit(1);
-}
-runCommand("rm -rf " . escapeshellarg($repoDir));
+// echo "\n🗑️ Deleting cloned repository folder: $repoDir\n";
+// if (!is_dir($repoDir)) {
+//     echo "⚠️ Directory $repoDir does not exist.\n";
+//     exit(1);
+// }
+// if (!is_writable($repoDir)) {
+//     echo "❌ No write permission for directory: $repoDir\n";
+//     exit(1);
+// }
+// runCommand("rm -rf " . escapeshellarg($repoDir));
 
 echo "\n🎉 Setup completed successfully!\n";
