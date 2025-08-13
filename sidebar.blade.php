@@ -22,27 +22,6 @@
             <div>
                 <ul class="mb-6 flex flex-col gap-4">
                     @foreach ($menus as $menu)
-                        {{-- <li class="{{ $menu->children->count() ? 'has-submenu' : '' }}">
-                            <a href="{{ $menu->url ? url($menu->url) : '#' }}">
-                                @if ($menu->icon)
-                                    <i class="{{ $menu->icon }}"></i>
-                                @endif
-                                <span>{{ $menu->title }}</span>
-                            </a>
-
-                            @if ($menu->children->count())
-                                <ul class="submenu">
-                                    @foreach ($menu->children as $child)
-                                        <li><a href="{{ url($child->url) }}">
-                                                @if ($child->icon)
-                                                    <i class="{{ $child->icon }}"></i>
-                                                @endif
-                                                {{ $child->title }}
-                                            </a></li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </li> --}}
                         <li class="{{ $menu->children->count() ? 'has-submenu' : '' }}">
                             <a href="{{ $menu->url ? url($menu->url) : '#' }}" @click.prevent="selected = (selected === '{{ $menu->title }}' ? '':'{{ $menu->title }}')"
                                 class="menu-item group"
