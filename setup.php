@@ -30,8 +30,8 @@ chdir($installPath);
 echo "\n📦 Installing Laravel Breeze...\n";
 runCommand("composer require laravel/breeze --dev");
 runCommand("php artisan breeze:install");
-runCommand("npm install");
-runCommand("npm run build");
+// runCommand("npm install");
+// runCommand("npm run build");
 
 // Step 2: Move assets folder from repo root to Laravel public folder
 echo "\n📂 Moving assets...\n";
